@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\StoreFornecedorRequest;
+use App\Http\Requests\UpdateFornecedorRequest;
+use App\Models\Fornecedor;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+
+class FornecedorController extends Controller
+{
+    public function index(): View
+    {
+        $fornecedores = Fornecedor::latest()->paginate(10);
+
+        return view('fornecedores.index', compact('fornecedores'));
+    }
+
+    public function create(): View
+    {
+        return view('fornecedores.create');
+    }
+
+    public function store(StoreFornecedorRequest $request): RedirectResponse
+    {
+        Fornecedor::create($request->validated());
+
+        return redirect()->route('fornecedores.index')->with('success', 'Fornecedor cadastrado com sucesso.');
+    }
+
+    public function show(Fornecedor $fornecedor): View
+    {
+        $fornecedor->load(['produtos', 'pedidos']);
+
+        return view('fornecedores.show', compact('fornecedor'));
+    }
+
+    public function edit(Fornecedor $fornecedor): View
+    {
+        return view('fornecedores.edit', compact('fornecedor'));
+    }
+
+    public function update(UpdateFornecedorRequest $request, Fornecedor $fornecedor): RedirectResponse
+    {
+        $fornecedor->update($request->validated());
+
+        return redirect()->route('fornecedores.index')->with('success', 'Fornecedor atualizado com sucesso.');
+    }
+
+    public function destroy(Fornecedor $fornecedor): RedirectResponse
+    {
+        $fornecedor->delete();
+
+        return redirect()->route('fornecedores.index')->with('success', 'Fornecedor excluído com sucesso.');
+    }
+}

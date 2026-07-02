@@ -18,15 +18,15 @@
                    class="flex items-center px-3 py-2 rounded-lg text-sm {{ request()->routeIs('dashboard') ? 'bg-red-700 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
                     Dashboard
                 </a>
-                <a href="{{ route('fornecedores.index') }}"
+                <a href="{{ Route::has('fornecedores.index') ? route('fornecedores.index') : '#' }}"
                    class="flex items-center px-3 py-2 rounded-lg text-sm {{ request()->routeIs('fornecedores.*') ? 'bg-red-700 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
                     Fornecedores
                 </a>
-                <a href="{{ route('produtos.index') }}"
+                <a href="{{ Route::has('produtos.index') ? route('produtos.index') : '#' }}"
                    class="flex items-center px-3 py-2 rounded-lg text-sm {{ request()->routeIs('produtos.*') ? 'bg-red-700 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
                     Produtos
                 </a>
-                <a href="{{ route('pedidos.index') }}"
+                <a href="{{ Route::has('pedidos.index') ? route('pedidos.index') : '#' }}"
                    class="flex items-center px-3 py-2 rounded-lg text-sm {{ request()->routeIs('pedidos.*') ? 'bg-red-700 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
                     Pedidos
                 </a>
