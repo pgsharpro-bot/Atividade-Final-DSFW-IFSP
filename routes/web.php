@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,7 +15,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('fornecedores', FornecedorController::class)
-    ->parameters(['fornecedores' => 'fornecedor']);
+        ->parameters(['fornecedores' => 'fornecedor']);
+    Route::resource('produtos', ProdutoController::class);
 });
 
 Route::middleware('auth')->group(function () {
