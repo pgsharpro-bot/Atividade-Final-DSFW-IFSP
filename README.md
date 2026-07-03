@@ -1,4 +1,5 @@
 # ImportaChina 🇨🇳📦
+- Rodrigo Querino do Amaral GU3065553
 
 Sistema de gestão para importação de produtos da China. Permite
 cadastrar fornecedores, catalogar produtos e controlar pedidos de
