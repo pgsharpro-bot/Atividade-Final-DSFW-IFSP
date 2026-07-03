@@ -1,17 +1,8 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
+<x-layouts.app :title="'Dashboard'">
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <p class="text-slate-700">
+            Bem-vindo(a), {{ auth()->user()->name }}! Use o menu ao lado para
+            gerenciar fornecedores, produtos e pedidos de importação.
+        </p>
     </div>
-</x-app-layout>
+</x-layouts.app>
