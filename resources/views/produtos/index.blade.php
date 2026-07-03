@@ -8,6 +8,7 @@
         <table class="min-w-full divide-y divide-slate-200">
             <thead class="bg-slate-50 text-xs uppercase text-slate-500">
                 <tr>
+                    <th class="px-4 py-3 text-left">Imagem</th>
                     <th class="px-4 py-3 text-left">Nome</th>
                     <th class="px-4 py-3 text-left">Fornecedor</th>
                     <th class="px-4 py-3 text-left">Categoria</th>
@@ -18,10 +19,14 @@
             <tbody class="divide-y divide-slate-200">
                 @forelse ($produtos as $produto)
                     <tr class="hover:bg-slate-50">
-                        <td class="px-4 py-3 text-sm">
-                            <a href="{{ route('produtos.show', $produto) }}" class="text-red-700 hover:underline font-medium">
-                                {{ $produto->nome }}
-                            </a>
+                        <td class="px-4 py-3">
+                            @if ($produto->imagem_url)
+                                <img src="{{ $produto->imagem_url }}" alt="{{ $produto->nome }}"
+                                    class="w-12 h-12 rounded object-cover border border-slate-200"
+                                    onerror="this.style.display='none'">
+                            @else
+                                <div class="w-12 h-12 rounded bg-slate-100 border border-slate-200"></div>
+                            @endif
                         </td>
                         <td class="px-4 py-3 text-sm text-slate-600">{{ $produto->fornecedor->nome }}</td>
                         <td class="px-4 py-3 text-sm text-slate-600">{{ $produto->categoria }}</td>
@@ -40,7 +45,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-4 py-6 text-center text-sm text-slate-500">Nenhum produto cadastrado.</td>
+                        <td colspan="6" class="px-4 py-6 text-center text-sm text-slate-500">Nenhum produto cadastrado.</td>
                     </tr>
                 @endforelse
             </tbody>
